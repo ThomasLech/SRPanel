@@ -2,20 +2,28 @@ package com.example.user.srpanel;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class ScrollingActivity extends AppCompatActivity {
 
+    AppBarLayout appBarLayout;
+    Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+    RelativeLayout toolbarWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,32 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+        toolbarWrapper = (RelativeLayout) findViewById(R.id.toolbarWrapper);
+
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) appBarLayout.getLayoutParams();
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int yPosition = (int)event.getY();
+                Log.d("CURRENT_POS_Y", Float.toString(toolbarWrapper.getY()));
+
+//                toolbar.setY(toolbar.getLocationOnScreen(int location[])+yPosition);
+
+                if((int)toolbarWrapper.getY() + yPosition > 500){
+                    params.height = (int)toolbarWrapper.getY() + yPosition;
+                    appBarLayout.setLayoutParams(params);
+                }
+
+//                toolbarWrapper.setY(toolbarWrapper.getY() + yPosition);
+
+                return false;
             }
         });
 
