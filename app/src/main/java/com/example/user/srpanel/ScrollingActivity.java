@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import io.github.kexanie.library.MathView;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     AppBarLayout appBarLayout;
@@ -24,6 +26,7 @@ public class ScrollingActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     RelativeLayout toolbarWrapper;
+    MathView formulaOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,18 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        formulaOne = (MathView) findViewById(R.id.formula_one);
+
+        formulaOne.config(
+                "MathJax.Hub.Config({\n"+
+                        "  CommonHTML: { linebreaks: { automatic: true } },\n"+
+                        "  \"HTML-CSS\": { linebreaks: { automatic: true } },\n"+
+                        "         SVG: { linebreaks: { automatic: true } }\n"+
+                        "});");
+
+        formulaOne.setText("$${-b \\pm \\sqrt{b^2-4ac} \\over 2a} + \\sum_{n=1}^{\\infty} \\frac{1+n}{\\sqrt{n^6}}-\n" +
+                "                    \\sin{x^3+\\tan{\\cos{\\frac{1}{x-12}}}}$$");
 
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         toolbarWrapper = (RelativeLayout) findViewById(R.id.toolbarWrapper);

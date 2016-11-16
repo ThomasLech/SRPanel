@@ -19,7 +19,8 @@
             android:layout_height="200dp"
             android:layout_weight = "0"
             android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:background="@drawable/background2">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -36,6 +37,27 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <io.github.kexanie.library.MathView
+                    xmlns:auto="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/formula_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/results_box"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    auto:engine="MathJax"
+                    >
+                </io.github.kexanie.library.MathView>
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+
+                    <!--android:text="Hello World!"-->
+                    <!--android:textColor="@android:color/black"-->
+
+                     <!--/>-->
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -56,8 +78,8 @@
             <Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_heightPercent="5%"
+                android:layout_height="30dp"
+                app:layout_heightPercent="8%"
                 android:background="#233549"
                 >
             </Toolbar>
